@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <!-- Responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <!-- End Responsive -->
+    <link rel="icon" href="./assets/favicon.ico" sizes="32x32" type="image/vnd.microsoft.icon">
+    <link rel="stylesheet" href="https://geoxc-apps2.bd.esri.com/support/calcite-web/1.2.5/css/calcite-web.min.css">
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="https://js.arcgis.com/4.23/esri/themes/light/main.css">
+    <script src="./app/dojo.js"></script>
+    <script src="https://js.arcgis.com/4.23/"></script>
+    <script>require(["Application/init"]);</script>
+  </head>
+  <body class="">
+
+    <!-- DETAILS -->
+    <div class="js-modal modal-overlay" data-modal="app-details-dialog">
+      <div class="modal-content column-14" aria-labelledby="modal" role="dialog">
+
+        <div class="modal-content-row trailer-half">
+          <div class="font-size-2 text-darkest-gray">Dangermond Preserve Historical Imagery</div>
+          <div class="js-modal-toggle esri-interactive icon-ui-close" aria-label="close-modal"></div>
+        </div>
+
+        <div id="app-description-panel" class="panel text-darkest-gray trailer-half">
+          Display various historical imagery in and around the Jack and Laura Dangermond Preserve.
+        </div>
+
+        <div class="panel trailer-half text-center">
+          <a href="https://www.nature.org/en-us/about-us/who-we-are/accountability/terms-of-use/" target="_blank" class="link-dark-blue">
+            <span>The Nature Conservancy Terms of Use</span>
+            <span class="icon-ui-link-external"></span>
+          </a>
+        </div>
+
+        <div class="modal-content-row">
+          <div>
+            <img src="./assets/esri_science_of_where.png" class="margin-right-3"> <img src="./assets/The-Nature-Conservancy-logo.jpg" style="height:44px;">
+          </div>
+          <button class="btn btn-white js-modal-toggle">OK</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- LAYER DETAILS-->
+    <div class="js-modal modal-overlay" data-modal="layer-details-dialog">
+      <div class="modal-content column-14" aria-labelledby="modal" role="dialog">
+
+        <div class="modal-content-row trailer-half">
+          <div id="layer-details-title" class="font-size-2 text-darkest-gray"></div>
+          <span class="js-modal-toggle esri-interactive icon-ui-close" aria-label="close-modal"></span>
+        </div>
+
+        <div id="layer-details-description" class="panel trailer-half text-darkest-gray"></div>
+
+        <div class="panel text-center trailer-half">
+          <a href="https://www.nature.org/en-us/about-us/who-we-are/accountability/terms-of-use/" target="_blank" class="link-dark-blue">
+            <span>The Nature Conservancy Terms of Use</span>
+            <span class="icon-ui-link-external"></span>
+          </a>
+        </div>
+
+        <div class="modal-content-row">
+          <div>
+            <img src="./assets/esri_science_of_where.png" class="margin-right-3"> <img src="./assets/The-Nature-Conservancy-logo.jpg" style="height:44px;">
+          </div>
+          <button class="btn btn-white js-modal-toggle">OK</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PRINT SIDE DRAWER -->
+    <div class="drawer drawer-left js-drawer" data-drawer="print-drawer" tabindex="0">
+      <nav class="drawer-nav" role="navigation">
+        <div id="print-node"></div>
+      </nav>
+    </div>
+
+    <!-- TOP NAVIGATION -->
+    <header id="header-panel" class="panel panel-black panel-no-padding padding-left-1 padding-right-1">
+      <!-- APP TITLE -->
+      <span id="app-title-node" class="top-nav-title text-white icon-ui-collection"></span>
+
+      <!-- RIGHT ALIGNED -->
+      <nav class="top-nav-list right" role="navigation">
+
+        <!-- PRINT -->
+        <span class="top-nav-link icon-ui-printer text-white margin-left-1 js-drawer-toggle esri-interactive" title="Print Map" data-drawer="print-drawer"></span>
+
+        <!-- APP DETAILS -->
+        <span class="top-nav-link icon-ui-description text-white js-modal-toggle margin-left-1 esri-interactive" data-modal="app-details-dialog"></span>
+
+      </nav>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <div id="main-container">
+      <!-- LEFT CONTAINER -->
+      <div id="left-container" class="panel panel-dark panel-no-border pane-toggle-target">
+
+        <div id="overview-panel" class="panel panel-no-padding trailer-quarter">
+          <div id="overview-view"></div>
+        </div>
+
+        <div id="opacity-panel" class="panel panel-darkX trailer-quarter">
+          <input id="opacity-input" type="range" min="0.00" max="1.00" value="1.00" step="0.01">
+          <div id="opacity-label" class="font-size--3 avenir-italic text-dark-gray text-lightX">
+            <span>transparent</span>
+            <span>opaque</span>
+          </div>
+        </div>
+
+        <aside id="items-list-container" class="side-nav" aria-role="complementary">
+          <div class="side-nav-title font-size-0">
+            <span class="text-darkest-gray">Historical Imagery</span>
+            <mark id="items-list-count" class="label right" title="Years with imagery in the current view extent">0 of 0</mark>
+          </div>
+          <nav id="items-list" role="navigation" aria-labelledby="sidenav"></nav>
+        </aside>
+
+      </div>
+      <!-- VIEW CONTAINER -->
+      <div id="view-container" class="pane-toggle-source"></div>
+    </div>
+  </body>
+</html>

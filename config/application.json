@@ -1,0 +1,27 @@
+{
+  "title": "Jack & Laura Dangermond Preserve - Historical Imagery",
+  "appid": "",
+  "group": "",
+  "webscene": "",
+  "webmap": "681863636eb8461390538068d51c6ee1",
+  "portalUrl": "https://apl.maps.arcgis.com",
+  "oauthappid": "AfXiKbwGUrjYv1t4",
+  "proxyUrl": "",
+  "units": "dual",
+  "helperServices": {
+    "geometry": {
+      "url": null
+    },
+    "printTask": {
+      "url": null
+    },
+    "elevationSync": {
+      "url": null
+    },
+    "geocode": [
+      {
+        "url": null
+      }
+    ]
+  }
+}

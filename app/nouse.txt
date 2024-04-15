@@ -1,0 +1,29 @@
+//}, { nodeByYear: new Map(), featureByNode: new Map(), featureByYear: new Map() });
+
+        //const featureByNode = imageryInfos.featureByNode;
+        // const nodeByYear = imageryInfos.nodeByYear;
+        // const featureByYear = imageryInfos.featureByYear;
+
+        /*const featureByYear = featureSet.features.reduce((byYear, feature) => {
+          return byYear.set(feature.attributes.Year, feature);
+        }, new Map());
+
+        const firstYear = 1928;
+        const featureByNode = new Map();
+        imageryLayersByYear.forEach((imageryLayer, year) => {
+          let itemNode;
+
+          const footprintFeature = featureByYear.get(year);
+          if(footprintFeature){
+            itemNode = this.addItemNode(view, footprintFeature, (year === firstYear));
+
+          } else {
+            const footprintFeature = new Graphic({
+              geometry: imageryLayer.fullExtent,
+              attributes: { Year: year, PercentCov: null, ColorType: null }
+            });
+            itemNode = this.addItemNode(view, footprintFeature, (year === firstYear));
+          }
+
+          featureByNode.set(itemNode, footprintFeature);
+        });*/

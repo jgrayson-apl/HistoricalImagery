@@ -1,0 +1,387 @@
+html,
+body {
+  margin                   : 0;
+  padding                  : 0;
+  width                    : 100%;
+  height                   : 100%;
+  font-size                : 100%;
+  -webkit-text-size-adjust : 100%;
+  -moz-text-size-adjust    : 100%;
+  -ms-text-size-adjust     : 100%;
+  overflow                 : auto;
+}
+
+body * {
+  outline : none;
+}
+
+body {
+  display        : flex;
+  flex-direction : column;
+  background     : #595959;
+}
+
+#header-panel {
+  flex-shrink : 0;
+  flex-grow   : 0;
+  min-width   : 0;
+  min-height  : 0;
+  z-index     : 99;
+  box-shadow  : 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content-row {
+  display         : flex;
+  flex-direction  : row;
+  justify-content : space-between;
+  align-items     : center;
+}
+
+#main-container {
+  flex-shrink    : 1;
+  flex-grow      : 1;
+  min-width      : 0;
+  min-height     : 0;
+  display        : flex;
+  flex-direction : row;
+}
+
+#view-container {
+  flex-shrink : 1;
+  flex-grow   : 1;
+  min-width   : 0;
+  min-height  : 0;
+  margin      : 0;
+  padding     : 0;
+}
+
+#left-container {
+  flex-shrink    : 0;
+  flex-grow      : 0;
+  min-width      : 0;
+  min-height     : 0;
+  width          : 20%;
+  display        : flex;
+  flex-direction : column;
+}
+
+#items-list-container {
+  flex-shrink    : 1;
+  flex-grow      : 1;
+  min-width      : 0;
+  min-height     : 0;
+  display        : flex;
+  flex-direction : column;
+  border         : none;
+}
+
+#overview-panel,
+#opacity-panel {
+  flex-shrink : 0;
+  flex-grow   : 0;
+  min-width   : 0;
+  min-height  : 0;
+}
+
+#items-list-count {
+  box-shadow : 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+#items-list {
+  flex-shrink : 1;
+  flex-grow   : 1;
+  min-width   : 0;
+  min-height  : 0;
+  overflow    : auto;
+}
+
+#items-list:empty {
+  text-align : center;
+  padding    : 2em 0;
+  font-style : italic;
+  color      : silver;
+}
+
+#items-list:empty:after {
+  content : "Loading items...";
+}
+
+.item-node {
+  border-left : solid 4px transparent;
+}
+
+.item-node.selected {
+  color             : #fff;
+  background        : #828282;
+  border-left-color : lime;
+}
+
+.item-node.selected .item-year-node {
+  color       : lime;
+  text-shadow : 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.item-node progress {
+  display    : block;
+  height     : 5px;
+  width      : 100px;
+  background : #fff;
+  box-shadow : 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.item-node progress::-webkit-progress-bar {
+  background : transparent;
+}
+
+.item-node progress::-webkit-progress-value {
+  background : #595959;
+}
+
+.item-node progress::-moz-progress-bar {
+  background : #595959;
+}
+
+.item-node.selected progress::-webkit-progress-value {
+  background : lime;
+}
+
+.item-node.selected progress::-moz-progress-bar {
+  background : lime;
+}
+
+.item-info-node {
+  cursor     : help;
+  opacity    : 0.0;
+  transition : opacity 0.5s linear;
+}
+
+.item-node:hover .item-info-node {
+  opacity    : 1.0;
+  transition : opacity 1s linear;
+}
+
+.item-node-thumb {
+  height     : 40px;
+  box-shadow : 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.item-top-node {
+  display         : flex;
+  flex-direction  : row;
+  justify-content : space-between;
+  align-items     : center;
+}
+
+.item-details-node {
+  display         : flex;
+  flex-direction  : row;
+  justify-content : space-between;
+  align-items     : center;
+}
+
+#user-thumb-node {
+  height         : 36px;
+  border-radius  : 18px;
+  vertical-align : middle;
+}
+
+.top-nav-link:hover, .top-nav-link:focus {
+  color               : #fff;
+  border-bottom-color : #fff;
+}
+
+#map-side-drawer,
+#map-side-drawer .drawer-nav {
+  display        : flex;
+  flex-direction : column;
+}
+
+#map-side-drawer .drawer-nav > :nth-child(1) {
+  flex-shrink : 0;
+  flex-grow   : 0;
+  min-width   : 0;
+  min-height  : 0;
+}
+
+#map-side-drawer .drawer-nav > :nth-child(2) {
+  flex-shrink : 1;
+  flex-grow   : 1;
+  min-width   : 0;
+  min-height  : 0;
+  overflow-y  : scroll;
+  overflow-x  : hidden;
+}
+
+#map-side-drawer .drawer-nav > :nth-child(3) {
+  flex-shrink : 0;
+  flex-grow   : 0;
+  min-width   : 0;
+  min-height  : 0;
+}
+
+.drawer-nav {
+  width : 350px;
+}
+
+#notifications-node {
+  position : sticky;
+  left     : 5px;
+  bottom   : 5px;
+}
+
+#notifications-node .alert {
+  opacity : 0.9;
+}
+
+.side-nav-link:last-of-type {
+  border-bottom : solid 1px #efefef;
+}
+
+.panel-toggle {
+  z-index    : 99;
+  position   : absolute;
+  cursor     : pointer;
+  top        : calc(50% - 15px);
+  left       : 0;
+  padding    : 4px 0;
+  color      : #ccc;
+  background : #595959;
+}
+
+.panel-toggle:hover {
+  color : #fff;
+}
+
+.pane-toggle-target {
+  transition : width 0.5s linear, padding 0.5s linear, opacity 0.5s linear 0.5s;
+}
+
+.pane-toggle-source {
+  transition : width 0.5s 1s linear;
+}
+
+.pane-toggle-target.collapsed {
+  opacity    : 0.0 !important;
+  padding    : 0 !important;
+  width      : 0 !important;
+  transition : opacity 0.5s linear, padding 0.5s linear 0.5s, width 0.5s linear 0.5s;
+}
+
+.pane-toggle-source.expanded {
+  width      : 100% !important;
+  transition : width 0.5s 1s linear;
+}
+
+.esri-widget,
+.esri-widget--button,
+.esri-menu,
+.esri-popup__main-container,
+.esri-popup .esri-pointer-direction,
+.esri-button {
+  color            : #fff !important;
+  background-color : #595959 !important;
+}
+
+.esri-input,
+.esri-popup__button,
+.esri-widget__table,
+.esri-widget__header,
+.esri-basemap-gallery__item-title {
+  color : unset !important;
+}
+
+.esri-widget--button:focus,
+.esri-widget--button:hover,
+.esri-menu li:focus,
+.esri-menu li:hover {
+  background-color : #999 !important;
+  color            : #fff !important;
+}
+
+.esri-button:focus,
+.esri-button:hover {
+  color : #fff !important;
+}
+
+.esri-layer-list__item {
+  background-color : unset !important;
+}
+
+.esri-print__container {
+  max-height : unset;
+}
+
+.esri-print {
+  color            : unset !important;
+  background-color : unset !important;
+}
+
+.esri-scale-bar {
+  background : none !important;
+}
+
+.esri-layer-list__item-actions-menu-item:hover,
+.esri-layer-list__item-actions-menu-item--active,
+.esri-layer-list__item-actions-menu-item--active:hover {
+  color            : #595959 !important;
+  background-color : transparent !important;
+}
+
+.layer-fade-btn.selected,
+.zoom-window-btn.selected {
+  color            : #595959 !important;
+  background-color : #fff !important;
+}
+
+.zoom-view-node {
+  position     : absolute;
+  width        : 150px;
+  height       : 150px;
+  border-color : #fff;
+  text-shadow  : 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+#opacity-label {
+  display         : flex;
+  flex-direction  : row;
+  justify-content : space-between;
+}
+
+#overview-view {
+  height         : 225px;
+  pointer-events : none;
+}
+
+.swipe-view {
+  width  : 50%;
+  height : 50%;
+}
+
+.view-loading-node {
+  box-shadow : none !important;
+}
+
+.view-loading-node .loader-text {
+  color       : #ffffff !important;
+  padding-top : 3em !important;
+}
+
+@keyframes load {
+  0%, 80%, 100% {
+    opacity    : .75;
+    box-shadow : 0 0 #595959;
+    height     : 2rem
+  }
+
+  40% {
+    opacity    : 1;
+    box-shadow : 0 -0.5rem #595959;
+    height     : 2.5rem
+  }
+}
+
+.loader-bars:before,
+.loader-bars:after,
+.loader-bars {
+  background : #595959;
+}

@@ -1,0 +1,14 @@
+
+
+
+
+https://geoxc-apps2.bd.esri.com/support/calcite-web/1.2.5/js
+
+
+https://geoxc-apps2.bd.esri.com/support/calcite-web/1.2.5/css/calcite-web.min.css
+
+
+https://geoxc-apps2.bd.esri.com/support/calcite-web/1.2.5/css/calcite-web-dark.min.css
+
+
+
