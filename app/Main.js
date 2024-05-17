@@ -233,10 +233,9 @@ define([
           imageryFootprintsLayer.outFields = ["*"];
           imageryFootprintsLayer.visible = false;
 
-
           const imageryLayers = view.map.layers.filter(layer => {
             return layer.title.startsWith('Preserve - ');
-          })
+          });
 
           /*const imageryLayersInfos = view.map.layers.reduce((infos, layer) => {
            if(layer.title.startsWith('Preserve - ')){
@@ -314,7 +313,8 @@ define([
 
       imageryFootprintsLayer.queryFeatures({
         where: "1=1",
-        outFields: ["Year", "PercentCoverage", "ColorType"],
+        //outFields: ["Year", "PercentCoverage", "ColorType"],
+        outFields: ["Year", "PercentCov", "ColorType"],
         orderByFields: ["Year ASC"],
         returnGeometry: true
       }).then(featureSet => {
@@ -371,7 +371,7 @@ define([
 
       // ITEM NODE //
       const itemNode = domConstruct.create("div", {
-        className: "item-node side-nav-link",
+        className: "item-node side-nav-link"
       }, "items-list");
       itemNode.addEventListener("click", () => {
 
@@ -411,13 +411,17 @@ define([
         title: "Color Type"
       }, details_node);
 
+      const percentCoverage = feature.attributes.PercentCoverage || feature.attributes.PercentCov;
+
       const coverageNode = domConstruct.create("div", {
-        innerHTML: `Coverage: <span class="avenir-demi">${ feature.attributes.PercentCoverage || 'n/a' }%</span>`
+        innerHTML: `Coverage: <span class="avenir-demi">${ percentCoverage || 'n/a' }%</span>`
+        //innerHTML: `Coverage: <span class="avenir-demi">${ feature.attributes.PercentCov || 'n/a' }%</span>`
       }, details_node);
 
       domConstruct.create("progress", {
         max: 100,
-        value: feature.attributes.PercentCoverage || 0
+        //value: feature.attributes.PercentCov || 0
+        value: percentCoverage || 0
       }, coverageNode);
 
       return itemNode;
@@ -494,7 +498,6 @@ define([
         const maskLayer = new GraphicsLayer({title: "Mask", graphics: [maskGraphic]});
         view.map.add(maskLayer);
 
-
         this.updateCurrentFootprint = (geometry) => {
           currentFootprintGraphic.geometry = geometry;
         };
@@ -502,19 +505,24 @@ define([
           footprintGraphic.geometry = geometry;
         };
 
-        const _polylineToPolygon = polyline =>{
+        const _polylineToPolygon = polyline => {
           return new Polygon({
             spatialReference: polyline.spatialReference,
             rings: polyline.paths
           });
-        }
+        };
 
         this.initializeViewExtentEvents = () => {
 
           const boundaryLayer = view.map.layers.find(layer => { return (layer.title === "Preserve Boundary"); });
           return boundaryLayer.load().then(() => {
             return boundaryLayer.queryFeatures().then(featureSet => {
-              const _boundaryPolygon = geometryEngine.geodesicBuffer(_polylineToPolygon(featureSet.features[0].geometry), 750.0, "meters");
+
+              let boundaryGeometry = featureSet.features[0].geometry;
+              if (boundaryGeometry.type === 'polyline') {
+                boundaryGeometry = _polylineToPolygon(boundaryGeometry);
+              }
+              const _boundaryPolygon = geometryEngine.geodesicBuffer(boundaryGeometry, 750.0, "meters");
 
               return watchUtils.init(view, "extent", extent => {
                 mapExtentGraphic.geometry = extent;
@@ -524,7 +532,7 @@ define([
 
             });
           });
-        }
+        };
 
       });
 
@@ -737,10 +745,9 @@ define([
           fade_out_handle = setTimeout(() => { fade_out(); }, 1000 / fps);
         } else {
           this.setImageryLayerOpacity(fade_layer.opacity);
-          clearTimeout(fade_out_handle)
+          clearTimeout(fade_out_handle);
         }
       };
-
 
       // POINTER DOWN //
       view.on("hold", (hold_evt) => {
